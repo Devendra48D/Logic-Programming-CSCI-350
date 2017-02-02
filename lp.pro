@@ -6,6 +6,7 @@
 
 
 /*If the list is empty, result is 0*/
+
 sum-up-numbers-simple([],0).
 
 /*If the first element is a non-number, result is sum of the rest of the list*/
