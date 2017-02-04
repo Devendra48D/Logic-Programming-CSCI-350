@@ -28,3 +28,16 @@ sum-up-numbers-simple(L, N):-
 	number(X), 
 	sum-up-numbers-simple(Y, Rem),
 	N is X + Rem.
+
+
+/*If the list is empty, result is 0*/
+
+sum-up-numbers-general([], 0).
+
+/*If the first element is a number, result is sum of the number and sum of the 
+*rest of the list*/
+sum-up-numbers-general(L, N):-
+	[X|Y] = L,
+	number(X), 
+	sum-up-numbers-general(Y, Rem),
+	N is X + Rem.
