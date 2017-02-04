@@ -50,6 +50,8 @@ sum-up-numbers-general(L, N):-
 /*If the first element is a non-number, result is sum of the rest of the list*/
 sum-up-numbers-general(L, N):-
 	[X|Y] = L,
-	\+ number(X), 
+	\+ number(X),
+	list(X), 
+	sum-up-numbers-general(X, First),
 	sum-up-numbers-general(Y, Rem),
-	N is Rem.
+	N is First + Rem.
