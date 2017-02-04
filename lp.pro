@@ -31,6 +31,18 @@ sum-up-numbers-simple(L, N):-
 
 
 
+/* Function sum-up-numbers-general(L, N) has a list L. L is a list, which may 
+*contain as elements numbers and non-numbers. The predicate is true if N is the 
+*sum of all the numbers including in nested lists in L. If there are no 
+*such numbers, the result is zero.
+*Logic: - If the list is empty, result is 0
+*       - If the first element is a list, result is sum of the sum of rest of 
+* the list and sum of the elements in first list
+*       - If the first element is a number, result is sum of the number and sum of 
+* the rest of the list.
+*       - If the first element is a non-number and non-list, result is sum of the 
+* rest of the list
+*/
 
 /*If the list is empty, result is 0*/
 sum-up-numbers-general([], 0).
@@ -47,7 +59,8 @@ sum-up-numbers-general(L, N):-
 	sum-up-numbers-general(Y, Rem),
 	N is X + Rem.
 
-/*If the first element is a non-number, result is sum of the rest of the list*/
+/*If the first element is a list, result is sum of the sum of rest of the list
+* and sum of the elements in first list*/
 sum-up-numbers-general(L, N):-
 	[X|Y] = L,
 	\+ number(X),
@@ -55,3 +68,12 @@ sum-up-numbers-general(L, N):-
 	sum-up-numbers-general(X, First),
 	sum-up-numbers-general(Y, Rem),
 	N is First + Rem.
+
+/*If the first element is a non-number and non-list, result is sum of the 
+*rest of the list*/
+sum-up-numbers-general(L, N):-
+	[X|Y] = L,
+	\+ number(X),
+	\+ list(X), 
+	sum-up-numbers-general(Y, Rem),
+	N is Rem.
