@@ -31,9 +31,13 @@ sum-up-numbers-simple(L, N):-
 
 
 
+
 /*If the list is empty, result is 0*/
 sum-up-numbers-general([], 0).
 
+/*Predicate to check whether an atom is a list*/
+list([]).
+list([A|B]).
 
 /*If the first element is a number, result is sum of the number and sum of the 
 *rest of the list*/
