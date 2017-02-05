@@ -107,7 +107,37 @@ min-list(L, Low):-
 	min-list(Y, Second),
 	number(Second),
 	min(X, Second, Low).
-	
+
+next-big(L, Num, Ans):-
+	[X] = L, 
+	X > Num, 
+	Ans is X.
+
+next-big(L, Num, Ans):- 
+	[X|Y] = L, 
+	\+ number(X), 
+	next-big(Y, Num, Ans).
+
+next-big(L, Num, Ans):-
+	[X|Y] = L, 
+	number(X), 
+	X > Num, 
+	next-big(Y, Num, Second), 
+	number(Second),
+	min(X, Second, Ans).
+
+next-big(L, Num, Ans):-
+	[X|Y] = L, 
+	number(X), 
+	X > Num, 
+	\+ next-big(Y, Num, Second), 
+	Ans is X.	
+
+next-big(L, Num, Ans):-
+	[X|Y] = L, 
+	number(X), 
+	X =< Num, 
+	next-big(Y, Num, Ans).	
 
 min-above-min(L1, L2, N):-
 	min-list(L2, Low),
