@@ -80,8 +80,10 @@ sum-up-numbers-general(L, N):-
 
 /* min-above-min
 */
-min(X, Y, X):- X <= Y.
-min(X, Y, Y) :- X > Y.
+min(X, Y, X):-
+	X < Y.
+min(X, Y, Y):-
+	X >= Y.
 
 min-list(L, Low):-
 	[X] = L,
