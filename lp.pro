@@ -91,6 +91,12 @@ min-list(L, Low):-
 	Low is X.
 
 min-list(L, Low):- 
+	[X,Y] = L, 
+	number(X), 
+	\+ number(Y),
+	Low is X.
+
+min-list(L, Low):- 
 	[X|Y] = L, 
 	\+ number(X),
 	min-list(Y, Low).
@@ -108,7 +114,7 @@ min-list(L, Low):-
 	min-list(Y, Second),
 	number(Second),
 	min(X, Second, Low).
-
+	
 
 min-above-min(L1, L2, N):-
 	min-list(L2, Low),
