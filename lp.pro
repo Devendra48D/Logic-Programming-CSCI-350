@@ -77,3 +77,37 @@ sum-up-numbers-general(L, N):-
 	\+ list(X), 
 	sum-up-numbers-general(Y, Rem),
 	N is Rem.
+
+/* min-above-min
+*/
+min(X, Y, X):- X <= Y.
+min(X, Y, Y) :- X > Y.
+
+min-list(L, Low):-
+	[X] = L,
+	number(X), 
+	Low is X.
+
+min-list(L, Low):- 
+	[X|Y] = L, 
+	\+ number(X),
+	min-list(Y, Low).
+
+min-list(L, Low):-
+	[X|Y] = L, 
+	number(X),
+	min-list(Y, Second),
+	\+ number(Second),
+	Low is X.
+
+min-list(L, Low):-
+	[X|Y] = L, 
+	number(X),
+	min-list(Y, Second),
+	number(Second),
+	min(X, Second, Low).
+
+
+min-above-min(L1, L2, N):-
+	min-list(L2, Low),
+	next-big(L1, Low, N).
