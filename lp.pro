@@ -214,7 +214,6 @@ all-unique(L):-
 unique-elements([],[]).
 
 unique-elements(L, Ans):-
-	all-unique(Ans),
 	[X|Y] = L,
 	[X|Z] = Ans,
 	\+ list(X),
@@ -222,7 +221,6 @@ unique-elements(L, Ans):-
 
 unique-elements(L, Ans):-
 	[X|Y] = L, 
-	all-unique(Ans),
 	list(X),
 	unique-elements(X|Left),
 	unique-elements(Y|Right),
