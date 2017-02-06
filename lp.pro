@@ -211,6 +211,23 @@ all-unique(L):-
 	\+ list(X), 
 	all-unique(Y).
 
+unique-elements([],[]).
+
+unique-elements(L, Ans):-
+	all-unique(Ans),
+	[X|Y] = L,
+	[X|Z] = Ans,
+	\+ list(X),
+	unique-elements(Y, Z).
+
+unique-elements(L, Ans):-
+	[X|Y] = L, 
+	all-unique(Ans),
+	list(X),
+	unique-elements(X|Left),
+	unique-elements(Y|Right),
+	append(Left, Right, Ans).
+
 common-unique-elements(L1, L2, N):-
 	unique-elements(L1, First), 
 	unique-element(L2, Second),
