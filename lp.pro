@@ -203,6 +203,13 @@ min-above-min(L1, L2, N):-
 /* start of common-unique-elements */
 common-unique-elements([],[],[]).
 
+all-unique([]).
+
+all-unique(L):-
+	[X|Y] = L, 
+	\+ member(X, Y), 
+	all-unique(Y).
+
 common-unique-elements(L1, L2, N):-
 	unique-elements(L1, First), 
 	unique-element(L2, Second),
