@@ -207,7 +207,8 @@ all-unique([]).
 
 all-unique(L):-
 	[X|Y] = L, 
-	\+ member(X, Y), 
+	\+ member(X, Y),
+	\+ list(X), 
 	all-unique(Y).
 
 common-unique-elements(L1, L2, N):-
