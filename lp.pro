@@ -199,3 +199,13 @@ min-above-min(L1, L2, N):-
 min-above-min(L1, L2, N):-
 	\+ min-list(L2, Low),
 	min-list(L1, N).
+
+/* start of common-unique-elements */
+common-unique-elements([],[],[]).
+
+common-unique-elements(L1, L2, N):-
+	unique-elements(L1, First), 
+	unique-element(L2, Second),
+	common(First, Second, N), 
+	all-unique(N).
+
