@@ -242,6 +242,22 @@ unique-elements(L, Ans):-
 	append(A1, A2, Temp),
 	remove-duplicates(Temp, Ans).
 
+common([],[],[]).
+common(X, [], []).
+common([], X, []).
+
+common(L1, L2, N):-
+	[X|Y] = L1, 
+	member(X, L2),
+	common(Y, L2, Tail), 
+	append([X], Tail, N).
+
+common(L1, L2, N):-
+	[X|Y] = L1, 
+	\+ member(X, L2), 
+	common(Y, L2, N).
+
+
 common-unique-elements(L1, L2, N):-
 	unique-elements(L1, First), 
 	unique-element(L2, Second),
