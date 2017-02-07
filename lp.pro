@@ -47,7 +47,7 @@ sum-up-numbers-simple(L, N):-
 /*If the list is empty, result is 0*/
 sum-up-numbers-general([], 0).
 
-/*Predicate to check whether an atom is a list*/
+/*Predicate to check whether the parameter is a list*/
 list([]).
 list([A|B]).
 
@@ -217,16 +217,15 @@ unique-elements([],[]).
 unique-elements(L, Ans):-
 	[X|Y] = L, 
 	\+ list(X),
-	\+ member(X, Ans), 
-	unique-elements(Y, Second), 
-	append([X], Second, Ans).
+	unique-elements(Y, Z), 
+	append([X], Z, Ans).
 
 unique-elements(L, Ans):-
-	[X|Y] = L,
-	list(X),
-	unique-elements(X|Left),
-	unique-elements(Y|Right),
-	append(Left, Right, Ans).
+	[X|Y] = L, 
+	list(X), 
+	unique-elements(X, A1), 
+	unique-elements(Y, A2), 
+	append(A1, A2, Ans).
 
 common-unique-elements(L1, L2, N):-
 	unique-elements(L1, First), 
