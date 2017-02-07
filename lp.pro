@@ -260,6 +260,6 @@ common(L1, L2, N):-
 
 common-unique-elements(L1, L2, N):-
 	unique-elements(L1, First), 
-	unique-element(L2, Second),
+	unique-elements(L2, Second),
 	common(First, Second, N), 
 	all-unique(N).
