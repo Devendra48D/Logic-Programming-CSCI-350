@@ -211,17 +211,14 @@ all-unique(L):-
 	\+ list(X), 
 	all-unique(Y).
 
+/*empty-list*/
 unique-elements([],[]).
 
-unique-elements(L, Ans):-
-	[X|Y] = L,
-	[X|Z] = Ans,
-	\+ list(X),
-	unique-elements(Y, Z).
+/*single atom or a number */
+unique-elements(L, [L]).
 
 unique-elements(L, Ans):-
 	[X|Y] = L, 
-	list(X),
 	unique-elements(X|Left),
 	unique-elements(Y|Right),
 	append(Left, Right, Ans).
@@ -231,4 +228,3 @@ common-unique-elements(L1, L2, N):-
 	unique-element(L2, Second),
 	common(First, Second, N), 
 	all-unique(N).
-
