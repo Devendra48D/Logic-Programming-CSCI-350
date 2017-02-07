@@ -211,6 +211,19 @@ all-unique(L):-
 	\+ list(X), 
 	all-unique(Y).
 
+remove-duplicates([],[]).
+
+remove-duplicates(L, S):-
+	[X|Y] = L, 
+	\+ member(X, Y),
+	remove-duplicates(Y, Second), 
+	append([X], Second, S).
+
+remove-duplicates(L, S):-
+	[X|Y] = L, 
+	member(X, Y),
+	remove-duplicates(Y, S).
+
 /*empty-list*/
 unique-elements([],[]).
 
@@ -218,14 +231,16 @@ unique-elements(L, Ans):-
 	[X|Y] = L, 
 	\+ list(X),
 	unique-elements(Y, Z), 
-	append([X], Z, Ans).
+	append([X], Z, Temp),
+	remove-duplicates(Temp, Ans).
 
 unique-elements(L, Ans):-
 	[X|Y] = L, 
 	list(X), 
 	unique-elements(X, A1), 
 	unique-elements(Y, A2), 
-	append(A1, A2, Ans).
+	append(A1, A2, Temp),
+	remove-duplicates(Temp, Ans).
 
 common-unique-elements(L1, L2, N):-
 	unique-elements(L1, First), 
